@@ -1,0 +1,704 @@
+src/components/DashboardPage.css
+
+.dashboard-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  color: #333;
+  font-size: 1.8em;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.logout-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+.dashboard-controls {
+  margin-bottom: 20px;
+  text-align: right; /* Align add task button to the right */
+}
+
+.add-task-button {
+  background-color: #60b373;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.add-task-button:hover {
+  background-color: #609d6e;
+}
+
+.dashboard-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5em;
+}
+
+.tasks-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.tasks-table th,
+.tasks-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.tasks-table th {
+  background-color: #e9ecef;
+  color: #495057;
+  font-weight: bold;
+}
+
+.tasks-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.tasks-table tr:hover {
+  background-color: #e2e6ea;
+}
+
+.action-button {
+  background-color: #7597bb;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: background-color 0.2s ease;
+}
+
+.action-button:hover {
+  background-color: #6b93bf;
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.action-button.delete-button {
+  background-color: #dc3545; /* Red for delete */
+  margin-left: 5px; /* Spacing from edit button */
+}
+
+.action-button.delete-button:hover {
+  background-color: #c82333;
+}
+
+.action-button.ai-assign-button {
+  background-color: #4d985e; /* Green for AI Assign */
+  margin-left: 5px; /* Spacing */
+}
+
+.action-button.ai-assign-button:hover:not(:disabled) {
+  background-color: #579364;
+}
+
+/* Style for the new Explanation column */
+.tasks-table th:nth-child(6),
+.tasks-table td:nth-child(6) {
+    width: 15%; /* Adjust width as needed */
+    text-align: left;
+}
+
+
+/* src/components/DashboardPage.css */
+
+.dashboard-controls {
+  display: flex; /* Makes buttons line up */
+  gap: 15px; /* Spacing between buttons */
+  margin-bottom: 20px;
+}
+
+.add-task-button,
+.add-user-button { /* Apply styles to both */
+  background-color: #5a7ca0;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease;
+}
+
+.add-task-button:hover,
+.add-user-button:hover {
+  background-color: #648bb4;
+}
+
+.tasks-table .status-dropdown {
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 0.9em;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding/border are included in width */
+}
+
+.tasks-table .status-dropdown:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+    color: #666;
+}
+
+
+
+.dashboard-controls {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 15px;
+    margin-bottom: 20px;
+    align-items: center; /* Align items vertically */
+}
+
+.filter-controls,
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.filter-controls label,
+.sort-controls span {
+    font-weight: bold;
+    color: #333;
+    font-size: 0.95em;
+}
+
+.filter-controls select {
+    padding: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 0.9em;
+    background-color: white;
+    cursor: pointer;
+    min-width: 120px; /* Ensure dropdowns have a minimum width */
+}
+
+.filter-controls select:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.sort-button {
+    background-color: #6c757d; /* Grey button */
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.sort-button:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px); /* Slight lift on hover */
+}
+
+.sort-button.active {
+    background-color: #007bff; /* Active sort button highlight */
+    font-weight: bold;
+}
+
+.sort-button.active:hover {
+    background-color: #0056b3;
+}
+
+/* src/components/DashboardPage.css */
+
+/* Global styling for dashboard components */
+:root {
+    --primary-color: #5680ad; /* Vibrant Blue */
+    --primary-hover-color: #0056b3;
+    --secondary-color: #88939d; /* Muted Grey */
+    --secondary-hover-color: #2a353e;
+    --accent-color: #639770; /* Success Green */
+    --accent-hover-color: #236e33;
+    --danger-color: #c2606c; /* Danger Red */
+    --danger-hover-color: #c82333;
+    --background-light: #f8f9fa;
+    --background-medium: #e9ecef;
+    --text-dark: #000000;
+    --text-light: #070c10;
+    --border-color: #dee2e6;
+    --card-bg: #ffffff;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--background-light);
+}
+
+/* Header */
+.dashboard-header {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px var(--shadow-light);
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.dashboard-header .user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1em;
+}
+
+.dashboard-header .user-info span {
+    font-weight: 500;
+}
+
+.logout-button {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.logout-button:hover {
+    background-color: var(--secondary-hover-color);
+    transform: translateY(-1px);
+}
+
+/* Controls and Filters */
+.dashboard-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Increased gap */
+    padding: 20px 40px;
+    background-color: var(--background-medium);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.add-task-button,
+.add-user-button {
+    background-color: var(--accent-color); /* Green for 'add' actions */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px var(--shadow-light);
+}
+
+.add-task-button:hover,
+.add-user-button:hover {
+    background-color: var(--accent-hover-color);
+    transform: translateY(-1px);
+}
+
+.filter-controls,
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--card-bg); /* White background for controls */
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.filter-controls label,
+.sort-controls span {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.9em;
+    white-space: nowrap; /* Prevent label wrapping */
+}
+
+.filter-controls select {
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 0.9em;
+    background-color: white;
+    cursor: pointer;
+    min-width: 120px;
+    box-sizing: border-box;
+    appearance: none; /* Remove default dropdown arrow */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-6.5H18.6c-5%200-9.3%201.8-13.2%205.5-3.9%203.7-6.2%208.7-6.2%2014.3v17.2c0%205.6%202.3%2010.6%206.2%2014.3l124.9%20124.9c3.9%203.9%208.9%205.8%2014.1%205.8s10.2-1.9%2014.1-5.8l124.9-124.9c3.9-3.7%206.2-8.7%206.2-14.3V83.7c0-5.6-2.3-10.6-6.2-14.3z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+}
+
+.filter-controls select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.sort-button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 1px 3px var(--shadow-light);
+}
+
+.sort-button:hover {
+    background-color: var(--secondary-hover-color);
+    transform: translateY(-1px);
+}
+
+.sort-button.active {
+    background-color: var(--primary-color);
+    font-weight: 600;
+    box-shadow: 0 2px 5px var(--shadow-medium);
+}
+
+.sort-button.active:hover {
+    background-color: var(--primary-hover-color);
+}
+
+/* Main Content Area */
+.dashboard-content {
+    padding: 30px 40px;
+    flex-grow: 1; /* Allows content area to fill remaining space */
+}
+
+.dashboard-content h2 {
+    font-size: 1.6em;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block; /* To make border-bottom only as wide as text */
+}
+
+/* Task Table Styling */
+.tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px var(--shadow-medium);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners apply to content */
+    background-color: var(--card-bg);
+}
+
+.tasks-table th,
+.tasks-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tasks-table th {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.tasks-table tbody tr:nth-child(even) {
+    background-color: var(--background-light); /* Zebra striping */
+}
+
+.tasks-table tbody tr:hover {
+    background-color: var(--background-medium);
+    transition: background-color 0.2s ease;
+}
+
+/* Task Status Dropdown */
+.tasks-table .status-dropdown {
+    padding: 6px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: white;
+    font-size: 0.85em;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-6.5H18.6c-5%200-9.3%201.8-13.2%205.5-3.9%203.7-6.2%208.7-6.2%2014.3v17.2c0%205.6%202.3%2010.6%206.2%2014.3l124.9%20124.9c3.9%203.9%208.9%205.8%2014.1%205.8s10.2-1.9%2014.1-5.8l124.9-124.9c3.9-3.7%206.2-8.7%206.2-14.3V83.7c0-5.6-2.3-10.6-6.2-14.3z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 10px;
+}
+
+.tasks-table .status-dropdown:disabled {
+    background-color: var(--background-medium);
+    cursor: not-allowed;
+    color: #666;
+}
+
+/* Action Buttons within table */
+.action-button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-right: 5px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.action-button:hover {
+    transform: translateY(-1px);
+}
+
+.action-button.edit-button {
+    background-color: #e9c615; /* Warning yellow */
+}
+
+.action-button.edit-button:hover {
+    background-color: #ba9f13;
+}
+
+.action-button.delete-button {
+    background-color: var(--danger-color);
+}
+
+.action-button.delete-button:hover {
+    background-color: var(--danger-hover-color);
+}
+
+.action-button.ai-assign-button {
+    background-color: #30b2c0; /* Info blue */
+}
+
+.action-button.ai-assign-button:hover:not(:disabled) {
+    background-color: #138496;
+}
+
+.action-button.ai-assign-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+
+/* Error/Loading Messages */
+.error-message {
+    color: var(--danger-color);
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.95em;
+}
+
+.loading-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1em;
+    color: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .dashboard-header,
+    .dashboard-controls,
+    .dashboard-content {
+        padding: 15px 20px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.5em;
+    }
+
+    .dashboard-header .user-info {
+        gap: 10px;
+    }
+
+    .dashboard-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-controls,
+    .sort-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .tasks-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto; /* Enable horizontal scrolling for table */
+        white-space: nowrap; /* Prevent content wrapping in cells */
+    }
+
+    .tasks-table thead, .tasks-table tbody, .tasks-table th, .tasks-table td, .tasks-table tr {
+        display: block;
+    }
+
+    .tasks-table th {
+        text-align: right;
+    }
+
+    .tasks-table td {
+        border-bottom: 1px solid var(--border-color);
+        position: relative;
+        padding-left: 50%; /* Space for pseudo-element labels */
+        text-align: right;
+    }
+
+    .tasks-table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        box-sizing: border-box;
+        color: var(--primary-color);
+    }
+
+    /* Adjust specific cell widths for better mobile display */
+    .tasks-table td:nth-of-type(1):before { content: "Task"; }
+    .tasks-table td:nth-of-type(2):before { content: "Description"; }
+    .tasks-table td:nth-of-type(3):before { content: "Assigned To"; }
+    .tasks-table td:nth-of-type(4):before { content: "Status"; }
+    .tasks-table td:nth-of-type(5):before { content: "Deadline"; }
+    .tasks-table td:nth-of-type(6):before { content: "Explanation"; }
+    .tasks-table td:nth-of-type(7):before { content: "Actions"; }
+
+    /* Actions column might need specific adjustments */
+    .tasks-table td:nth-of-type(7) {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 5px;
+        padding-left: 15px; /* Adjust padding for better button alignment */
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .dashboard-header h1 {
+        font-size: 1.3em;
+    }
+    .dashboard-controls {
+        gap: 10px;
+    }
+    .add-task-button, .add-user-button {
+        width: 100%;
+    }
+    .filter-controls, .sort-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .filter-controls select {
+        width: 100%;
+    }
+    .sort-controls {
+        width: 100%;
+        justify-content: flex-start; /* Align buttons to the start */
+    }
+}

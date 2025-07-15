@@ -1,0 +1,122 @@
+/* src/components/EditTaskModal.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 1.8em;
+}
+
+.modal-content .form-group {
+  margin-bottom: 18px;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: bold;
+  font-size: 0.95em;
+}
+
+.modal-content input[type="text"],
+.modal-content textarea,
+.modal-content select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.modal-content textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content textarea:focus,
+.modal-content select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.modal-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.modal-actions button[type="submit"] {
+  background-color: #007bff; /* Blue for Save */
+  color: white;
+}
+
+.modal-actions button[type="submit"]:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.modal-actions .cancel-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.modal-actions .cancel-button:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+.modal-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
