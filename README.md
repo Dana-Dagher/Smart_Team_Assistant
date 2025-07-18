@@ -41,13 +41,35 @@ mini_project/
    flask db migrate -m "Initial migration"
    flask db upgrade
    ```
+
 3. **Start the backend server:**
    ```powershell
    python app.py
    ```
    The backend runs on [http://localhost:5000](http://localhost:5000).
 
-## Frontend Setup
+## Docker Setup (Recommended)
+You can run both backend and frontend using Docker and Docker Compose:
+
+1. Make sure Docker Desktop is installed and running.
+2. In your project root, run:
+   ```powershell
+   docker-compose up --build
+   ```
+3. The backend will be available at [http://localhost:5000](http://localhost:5000)
+   and the frontend at [http://localhost:3000](http://localhost:3000).
+4. To stop the containers, press `Ctrl+C` or run:
+   ```powershell
+   docker-compose down
+   ```
+
+**Note:**
+- If you see errors about Docker not running, start Docker Desktop and try again.
+- Ollama (for AI features) must be running locally on your host machine, not in Docker.
+
+
+## Frontend Setup (Manual)
+If you prefer to run the frontend manually:
 1. **Install dependencies:**
    ```powershell
    cd frontend
