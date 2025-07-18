@@ -11,3 +11,4 @@ RUN pip install --no-cache-dir flask flask-cors flask-sqlalchemy flask-migrate r
 EXPOSE 5000
 
 CMD ["python", "app.py"]
+

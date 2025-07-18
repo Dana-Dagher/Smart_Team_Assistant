@@ -305,7 +305,9 @@ def delete_task(task_id):
 
 # Helper function to interact with Ollama
 def get_ollama_response(prompt_text, model="mistral"):
-    ollama_api_url = "http://localhost:11434/api/generate"
+    ollama_api_url = "http://host.docker.internal:11434/api/generate"
+    ####run the next line without the above line only when running this project without docker#
+    #ollama_api_url = "http://localhost:11434/api/generate"
     headers = {'Content-Type': 'application/json'}
     payload = {
         "model": model,
